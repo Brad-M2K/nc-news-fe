@@ -1,12 +1,10 @@
-# React + Vite
+# nc news front end 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- there is a tasks list using trello i have also been setting up. but to be honest i strugged using excalidraw and tried out a few differnet things thne ended up back at excalidraw. bit of a frustrating planning day but I already know what i want to do and drawing shapes inst going to get me any closer lol
 
-Currently, two official plugins are available:
+## Here is my trello project board
+https://trello.com/invite/b/68595e152427a55683714e37/ATTIc11ae37034db9575bc29751679ced9ca057C1331/nc-news
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- this will also be fleshed out more as i go fro now just wanted to cover certain grounds and iterate as i go and improve. 
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### will clean up this read me but just wanted to give some more context
