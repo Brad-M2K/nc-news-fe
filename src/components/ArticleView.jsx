@@ -29,6 +29,7 @@ function ArticleView() {
 
     return (
         <main className="article-view">
+            <img id="article-view-img" src={article.article_img_url}/>
             <h2>{article.title}</h2>
             <div className="article-meta">
                 <span>By {article.author}</span> |
