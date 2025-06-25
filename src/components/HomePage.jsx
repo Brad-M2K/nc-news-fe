@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ArticleCard from "./ArticleCard";
-
+import ArticleCard from "./ArticleCard"
 import { fetchData } from '../utils/api';
+import ClipLoader from 'react-spinners/ClipLoader';
+
 
 function HomePage() {
     const [articles, setArticles] = useState([]);
@@ -10,33 +11,38 @@ function HomePage() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-      const getArticles = async () => {
-        try {
-          const articlesData = await fetchData();
-          setArticles(articlesData);
-        } catch (err) {
-          setError(err.message);
-        } finally {
-          setIsLoading(false);
-        }
-      };
+        const getArticles = async () => {
+            try {
+                const articlesData = await fetchData();
+                setArticles(articlesData);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
-      getArticles();
+        getArticles();
     }, []);
 
-  if (isLoading) return <main>Loading articles...</main>;
-  if (error) return <main>Error: {error}</main>;
-
-  return (
-    <main className="homepage">
-      <h1 style={{ color: '#1a237e', marginBottom: '2rem', letterSpacing: '2px' }}>All Articles</h1>
-      <ul>
-        {articles.map((article) => (
-          <ArticleCard key={article.article_id} article={article} />
-        ))}
-      </ul>
-    </main>
-  );
+    return (
+        <main className="homepage">
+            {isLoading ? (
+                <ClipLoader color="green" size={50} />
+            ) : error ? (
+                <p>Error: {error}</p>
+            ) : (
+                <>
+                    <h1 style={{ color: '#1a237e', marginBottom: '2rem', letterSpacing: '2px' }}>All Articles</h1>
+                    <ul>
+                    {articles.map((article) => (
+                        <ArticleCard key={article.article_id} article={article} />
+                    ))}
+                    </ul>
+                </>
+            )}
+        </main>
+    );
 }
 
 export default HomePage;

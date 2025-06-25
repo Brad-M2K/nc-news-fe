@@ -1,17 +1,34 @@
 import { Link } from "react-router-dom";
+import { useState } from 'react';
+import VoteButtons from "./VoteButtons";
 
 function ArticleCard({ article }) {
+
+    // const [error, setError] = useState(null);
+    const [voteCount, setVoteCount] = useState(article.votes);
+
+    
+
+
+
     return (
         <li className="article-card">
+            <div>
+            <span>By {article.author}</span> | 
+            <span> Topic: {article.topic} </span> 
+            </div>
             <Link to={`/articles/${article.article_id}`}>
                 <img id="article-cards-img" src={article.article_img_url}/>
                 <h2>{article.title}</h2>
             </Link>
             <div className="article-meta">
-                <span>By {article.author}</span> |
-                <span>Topic: {article.topic}</span> |
-                <span>Votes: {article.votes}</span> |
-                <span>Comments: {article.comment_count}</span> |
+                <VoteButtons
+                    type="article"
+                    id={article.article_id}
+                    votes={article.votes}
+                    voteCount={voteCount}
+                    setVoteCount={setVoteCount} /> |
+                <span>💬 {article.comment_count}</span> |
                 <span>Posted: {new Date(article.created_at).toLocaleString()}</span>
             </div>
             

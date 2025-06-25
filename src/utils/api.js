@@ -1,4 +1,4 @@
-
+import axios from 'axios';
 
 // Inside src/utils/api.js
 export const fetchData = async (article_id = null, getComments = false) => {
@@ -9,12 +9,14 @@ export const fetchData = async (article_id = null, getComments = false) => {
         if (getComments) url += '/comments';
     }
 
-    const res = await fetch(url);
-    if (!res.ok) throw new Error('Failed to fetch data');
-    const data = await res.json();
+    try {
+        const res = await axios.get(url);
+        const data = res.data;
 
-    // Decide what to return depending on what was fetched
-    if (getComments) return data.comments;
-    if (article_id) return data.article;
-    return data.articles;
+        if (getComments) return data.comments;
+        if (article_id) return data.article;
+        return data.articles;
+    } catch (error) {
+        throw new Error('Failed to fetch data');
+    }
 };
