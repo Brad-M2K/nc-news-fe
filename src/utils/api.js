@@ -1,7 +1,7 @@
 
 
 // Inside src/utils/api.js
-export const fetchArticles = async (article_id = null, getComments = false) => {
+export const fetchData = async (article_id = null, getComments = false) => {
     let url = 'https://nc-news-api-b3sf.onrender.com/api/articles';
 
     if (article_id) {

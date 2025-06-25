@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetchArticles } from '../utils/api'
+import { fetchData } from '../utils/api'
+import Comments from './Comments'; // adjust path if needed
 
 function ArticleView() {
     const { article_id } = useParams();
@@ -11,7 +12,7 @@ function ArticleView() {
     useEffect(() => {
         const fetchArticle = async () => {
             try {
-                const res = await fetchArticles(article_id);
+                const res = await fetchData(article_id);
                 setArticle(res || {});
             } catch (err) {
                 setError(err.message);
@@ -40,6 +41,7 @@ function ArticleView() {
             <article>
                 <p>{article.body}</p>
             </article>
+            <Comments article_id={article_id}/>
         </main>
     );
 }

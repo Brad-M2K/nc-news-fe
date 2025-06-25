@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 
-import { fetchArticles } from '../utils/api';
+import { fetchData } from '../utils/api';
 
 function HomePage() {
     const [articles, setArticles] = useState([]);
@@ -12,7 +12,7 @@ function HomePage() {
     useEffect(() => {
       const getArticles = async () => {
         try {
-          const articlesData = await fetchArticles();
+          const articlesData = await fetchData();
           setArticles(articlesData);
         } catch (err) {
           setError(err.message);
