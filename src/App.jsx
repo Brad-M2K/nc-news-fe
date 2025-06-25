@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import ArticleView from './components/ArticleView';
 import ErrorPage from './components/ErrorPage';
+import Footer from './components/Footer';
 
 import './App.css'
 
@@ -21,9 +22,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/articles/:article_id" element={<ArticleView />} />
         <Route path="*" element={<ErrorPage />} />
-        
-        {/* more routes to be added */}
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
