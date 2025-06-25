@@ -19,9 +19,10 @@ function App() {
       <Header />
       <NavBar />
       <Routes>
+        <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/articles/:article_id" element={<ArticleView />} />
-        <Route path="*" element={<ErrorPage />} />
+      
       </Routes>
       <Footer />
     </BrowserRouter>

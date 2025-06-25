@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { fetchArticles } from '../utils/api'
 
 function ArticleView() {
     const { article_id } = useParams();
@@ -10,10 +11,8 @@ function ArticleView() {
     useEffect(() => {
         const fetchArticle = async () => {
             try {
-                const res = await fetch(`https://nc-news-api-b3sf.onrender.com/api/articles/${article_id}`);
-                if (!res.ok) throw new Error("Failed to fetch articles");
-                const data = await res.json();
-                setArticle(data.article || {});
+                const res = await fetchArticles(article_id);
+                setArticle(res || {});
             } catch (err) {
                 setError(err.message);
             } finally {
