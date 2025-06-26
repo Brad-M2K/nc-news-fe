@@ -16,7 +16,7 @@ export const fetchData = async (article_id = null, getComments = false) => {
         if (getComments) return data.comments;
         if (article_id) return data.article;
         return data.articles;
-    } catch (error) {
-        throw new Error('Failed to fetch data');
+    } catch (err) {
+        throw new Error('Failed to fetch data', err);
     }
 };

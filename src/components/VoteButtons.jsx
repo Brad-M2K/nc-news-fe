@@ -25,7 +25,7 @@ function VoteButtons({ type, id, voteCount, setVoteCount }) {
         } catch (err) {
             setVoteCount((prev) => prev - diff);
             setUserVote(userVote);
-            setError("Failed to vote.");
+            setError("Failed to vote.", err);
         }
     };
     

@@ -296,6 +296,7 @@ main, .homepage, .article-view {
 .comment-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
   color: #555;
@@ -315,6 +316,9 @@ main, .homepage, .article-view {
   font-size: 0.85rem;
   color: #333;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Voting buttons */
@@ -451,4 +455,89 @@ main, .homepage, .article-view {
   opacity: 0.85;
   box-shadow: 0 2px 8px rgba(108,71,255,0.08);
   background: linear-gradient(90deg, #f6f6fa 0%, #a084ee 50%, #f6f6fa 100%);
+}
+
+/* Delete comment button styles */
+.delete-comment-button {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.2rem 0.7rem 0.2rem 0.7rem;
+  border-radius: 1.2rem;
+  margin-left: 0.7rem;
+  margin-bottom: 0.1rem;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  box-shadow: none;
+  opacity: 0.7;
+  outline: none;
+}
+
+.delete-comment-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.delete-comment-button svg {
+  color: #888;
+  transition: color 0.15s;
+}
+
+.delete-comment-button:hover svg {
+  color: #ff2222;
+}
+
+.delete-comment-button:hover {
+  color: #ff2222;
+  background: none;
+  opacity: 1;
+  /* box-shadow removed to eliminate red glow */
+}
+
+.cancel-delete-btn {
+  background: #f7f7fa;
+  border: 1.5px solid #d3d3e0;
+  color: #555;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 1.2rem;
+  padding: 0.2rem 1.1rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.1rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border 0.15s;
+  outline: none;
+}
+
+.cancel-delete-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.cancel-delete-btn:hover {
+  background: #ffeaea;
+  color: #b71c1c;
+  border: 1.5px solid #b71c1c;
+}
+
+.comment-footer {
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 0.2rem;
+  box-shadow: none;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
 }
