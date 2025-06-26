@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { fetchData } from '../utils/api';
+import { fetchCommentsByArticleId } from '../utils/fetchCommentsByArticleId';
 import CommentCard from './CommentCard';
-import AddComment from './AddComment';
+import AddComment from './addComment';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-function Comments({ article_id, setCommentCount }){
+function CommentList({ article_id, setCommentCount }){
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
@@ -12,7 +12,7 @@ function Comments({ article_id, setCommentCount }){
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const res = await fetchData(article_id, true);
+                const res = await fetchCommentsByArticleId(article_id, true);
                 setComments(res || []);
             } catch (err) {
                 setError(err.message);
@@ -47,4 +47,4 @@ function Comments({ article_id, setCommentCount }){
     )
 }
 
-export default Comments;
+export default CommentList;

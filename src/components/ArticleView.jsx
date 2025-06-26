@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetchData } from '../utils/api'
-import Comments from './Comments'; // adjust path if needed
+import {fetchArticleById}  from '../utils/fetchArticleById';
+import CommentList from './CommentList'; // adjust path if needed
 import VoteButtons from './VoteButtons';
 import ClipLoader from 'react-spinners/ClipLoader';
 
@@ -22,7 +22,7 @@ function ArticleView() {
     useEffect(() => {
         const fetchArticle = async () => {
             try {
-                const res = await fetchData(article_id);
+                const res = await fetchArticleById(article_id);
                 setArticle(res || {});
                 setVoteCount(res.votes);
                 setCommentCount(res.comment_count);
@@ -39,13 +39,15 @@ function ArticleView() {
     return (
         <main className="article-view">
           {isLoading ? (
-            <ClipLoader color="#36d7b7" size={50} />
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40vh', width: '100%' }}>
+              <ClipLoader color="#36d7b7" size={70} />
+            </div>
           ) : error ? (
             <p>Error: {error}</p>
           ) : !article.title ? (
             <p>No article found.</p>
           ) : (
-            <div className="article-card-container">
+            <div className="article-view-container">
               <div className="article-meta">
                 <span>By {article.author}</span> | <span>Topic: {article.topic}</span> |
               </div>
@@ -66,7 +68,7 @@ function ArticleView() {
                 <p>{article.body}</p>
               </article>
               <hr className="article-comments-separator" />
-              <Comments article_id={article_id} setCommentCount={setCommentCount} />
+              <CommentList article_id={article_id} setCommentCount={setCommentCount} />
             </div>
           )}
         </main>

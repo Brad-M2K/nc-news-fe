@@ -8,6 +8,7 @@ import ArticleView from './components/ArticleView';
 import ErrorPage from './components/ErrorPage';
 import Footer from './components/Footer';
 import { UserProvider } from './contexts/UserContext';
+import TopicsPage from './components/TopicPage';
 
 import './App.css'
 
@@ -24,7 +25,8 @@ function App() {
             <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/articles/:article_id" element={<ArticleView />} />
-      
+            <Route path="/topics" element={<TopicsPage/>} />
+            {/* <Rout path="/MyTopics" /> */}
         </Routes>
         <Footer />
       </BrowserRouter>

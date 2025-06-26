@@ -8,7 +8,7 @@
 │       │   │         └── <ArticleCard /> (mapped list)
 │       │   ├── "/articles/:article_id" => <ArticleView>
 │       │   │         ├── <VoteButtons />
-│       │   │         ├── <Comments>
+│       │   │         ├── <CommentList>
 │       │   │         │     ├── <AddComment />
 │       │   │         │     └── <CommentCard /> (mapped list)
 │       │   │         │           ├── <DeleteCommentButton />
