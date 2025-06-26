@@ -4,7 +4,7 @@ import { UserContext } from '../contexts/UserContext';
 import TrashIcon from '../assets/TrashIcon.svg?react';
 import CancelIcon from '../assets/Cancel.svg?react';
 
-function CommentCard({ comment }) {
+function CommentCard({ comment, setCommentCount }) {
     const [isDeleted, setIsDeleted] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const { currentUser } = useContext(UserContext);
@@ -38,7 +38,10 @@ function CommentCard({ comment }) {
                         <div className="delete-confirm">
                             <DeleteCommentButton
                                 comment_id={comment.comment_id}
-                                onDelete={() => setIsDeleted(true)}
+                                onDelete={() => {
+                                    setIsDeleted(true);
+                                    if (setCommentCount) setCommentCount((count) => count - 1);
+                                }}
                             />
                             <button 
                                 className="cancel-delete-btn icon-btn"

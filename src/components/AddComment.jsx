@@ -3,7 +3,7 @@ import { postComment } from '../utils/postComment';
 import ClipLoader from 'react-spinners/ClipLoader'
 
 
-function AddComment({ article_id, setComments}) {
+function AddComment({ article_id, setComments, setCommentCount }) {
     const [comment, setComment] = useState('');
     const [isPosting, setIsPosting] = useState(false);
     const [error, setError] = useState(null);
@@ -22,6 +22,7 @@ function AddComment({ article_id, setComments}) {
             });
             setComments((curr) => [newComment, ...curr]);
             setComment('');
+            if (setCommentCount) setCommentCount((count) => count + 1);
         } catch {
             setError('Failed to post comment');
         } finally {

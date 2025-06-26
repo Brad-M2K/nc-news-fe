@@ -12,6 +12,7 @@ function ArticleView() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [voteCount, setVoteCount] = useState(0);
+    const [commentCount, setCommentCount] = useState(0);
 
     // Scroll to top on mount/article change
     useEffect(() => {
@@ -23,7 +24,8 @@ function ArticleView() {
             try {
                 const res = await fetchData(article_id);
                 setArticle(res || {});
-                setVoteCount(res.votes)
+                setVoteCount(res.votes);
+                setCommentCount(res.comment_count);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -56,15 +58,15 @@ function ArticleView() {
                   votes={article.votes}
                   voteCount={voteCount}
                   setVoteCount={setVoteCount}
-                />{' '}
-                | <span>💬 {article.comment_count}</span> |{' '}
+                /> |
+                <span>💬 {commentCount}</span> |
                 <span>Posted: {new Date(article.created_at).toLocaleString()}</span>
               </div>
               <article>
                 <p>{article.body}</p>
               </article>
               <hr className="article-comments-separator" />
-              <Comments article_id={article.article_id}/>
+              <Comments article_id={article_id} setCommentCount={setCommentCount} />
             </div>
           )}
         </main>
