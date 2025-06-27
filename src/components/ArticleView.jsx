@@ -4,6 +4,7 @@ import {fetchArticleById}  from '../utils/fetchArticleById';
 import CommentList from './CommentList'; // adjust path if needed
 import VoteButtons from './VoteButtons';
 import ClipLoader from 'react-spinners/ClipLoader';
+import ErrorPage from "./ErrorPage";
 
 
 function ArticleView() {
@@ -43,7 +44,11 @@ function ArticleView() {
               <ClipLoader color="#36d7b7" size={70} />
             </div>
           ) : error ? (
-            <p>Error: {error}</p>
+            <ErrorPage message={
+              error.includes('Network') ? 'Network error: Please check your connection.' :
+              error.includes('404') ? 'Article not found.' :
+              `Failed to load article: ${error}`
+            } />
           ) : !article.title ? (
             <p>No article found.</p>
           ) : (
@@ -53,6 +58,9 @@ function ArticleView() {
               </div>
               <img id="article-view-img" src={article.article_img_url} />
               <h2>{article.title}</h2>
+              <article>
+                <p>{article.body}</p>
+              </article>
               <div className="article-meta">
                 <VoteButtons
                   type="article"
@@ -64,9 +72,6 @@ function ArticleView() {
                 <span>💬 {commentCount}</span> |
                 <span>Posted: {new Date(article.created_at).toLocaleString()}</span>
               </div>
-              <article>
-                <p>{article.body}</p>
-              </article>
               <hr className="article-comments-separator" />
               <CommentList article_id={article_id} setCommentCount={setCommentCount} />
             </div>

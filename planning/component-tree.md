@@ -2,10 +2,11 @@
 ├── <UserProvider>
 │   └── <BrowserRouter>
 │       ├── <Header />
-│       ├── <NavBar />
+│       ├── <FloatingNavOnHeaderHide>
+│       │   └── <NavBar />
+│       ├── <BackToTopButton />
 │       ├── <Routes>
 │       │   ├── "/" => <HomePage>
-│       │   │         └── <ArticleCard /> (mapped list)
 │       │   ├── "/articles/:article_id" => <ArticleView>
 │       │   │         ├── <VoteButtons />
 │       │   │         ├── <CommentList>
@@ -14,6 +15,10 @@
 │       │   │         │           ├── <DeleteCommentButton />
 │       │   │         │           └── <CancelIcon /> (as button)
 │       │   │         └── <CommentForm />
+│       │   ├── "/topics" => <TopicPage>
+│       │   │         ├── <TopicsList />
+│       │   │         └── <ArticleList>
+│       │   │               └── <ArticleCard /> (mapped list)
 │       │   └── "*" => <ErrorPage />
 │       └── <Footer />
 

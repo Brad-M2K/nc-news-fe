@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import { UserProvider } from './contexts/UserContext';
 import TopicPage from './components/TopicPage';
 import FloatingNavOnHeaderHide from './components/FloatingNavOnHeaderHide';
+import BackToTopButton from './components/BackToTopButton';
 
 import './App.css'
 
@@ -33,6 +34,7 @@ function App() {
             
         </Routes>
         <Footer />
+        <BackToTopButton />
       </BrowserRouter>
     </UserProvider>
     

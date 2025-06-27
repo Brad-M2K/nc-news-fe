@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import ArticleCard from "./ArticleCard";
 import {fetchAllArticles} from '../utils/fetchAllArticles';
 import ClipLoader from 'react-spinners/ClipLoader';
+import SortControls from './SortControls';
+import ErrorPage from "./ErrorPage";
 
 
 
@@ -11,6 +13,8 @@ function ArticleList({ topic, articles: propArticles }) {
     const [error, setError] = useState(null);
     const [activeCard, setActiveCard] = useState(null);
     const cardRefs = useRef([]);
+    const [order, setOrder] = useState(null);
+    const [sortBy, setSortBy] = useState(null);
 
     useEffect(() => {
         if (propArticles) {
@@ -20,7 +24,7 @@ function ArticleList({ topic, articles: propArticles }) {
         }
         const getArticles = async () => {
             try {
-                let data = await fetchAllArticles({ topic });
+                let data = await fetchAllArticles({ topic, sortBy, order });
                 setArticles(data);
             } catch (err) {
                 setError(err.message);
@@ -30,7 +34,7 @@ function ArticleList({ topic, articles: propArticles }) {
         };
 
         getArticles();
-    }, [topic, propArticles]);
+    }, [topic, propArticles, sortBy, order]);
 
     useEffect(() => {
         if (!articles.length) return;
@@ -66,11 +70,21 @@ function ArticleList({ topic, articles: propArticles }) {
     }
 
     if (error) {
-        return <p style={{ color: 'red' }}>Error: {error}</p>;
+        return <ErrorPage message={
+            error.includes('Network') ? 'Network error: Please check your connection.' :
+            error.includes('404') ? 'Articles not found.' :
+            `Failed to load articles: ${error}`
+        } />;
     }
 
     return (
         <div className="article-list-container">
+            <SortControls
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+                order={order}
+                setOrder={setOrder}
+            />
             <ul>
                 {articles.map((article, idx) => (
                     <ArticleCard

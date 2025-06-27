@@ -4,16 +4,14 @@ import ArticleList from './ArticleList';
 import ClipLoader from 'react-spinners/ClipLoader';
 import TopicsList from './TopicsList';
 import { useLocation, useParams } from 'react-router-dom';
-import { fetchAllArticles } from '../utils/fetchAllArticles';
-import ErrorPage from './ErrorPage';
 
 
 
 function TopicPage() {
     const [selectedTopic, setSelectedTopic] = useState(null);
-    const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [sortBy, setSortBy] = useState(null);
+    const [order, setOrder] = useState(null);
     const location = useLocation();
     const { topic } = useParams();
 
@@ -21,32 +19,10 @@ function TopicPage() {
     useEffect(() => {
         if (location.state && location.state.reset) {
             setSelectedTopic(null);
-            setArticles([]);
             setIsLoading(false);
         }
     }, [location.state]);
 
-    useEffect(() => {
-        const currentTopic = selectedTopic || topic;
-        if (!currentTopic) return;
-
-        const fetchArticles = async () => {
-            setIsLoading(true);
-            setError();
-            try {
-                // Use your fetchAllArticles or fetchArticlesByTopic here
-                const topicArticles = await fetchAllArticles({ topic: currentTopic });
-                setArticles(topicArticles);
-            } catch (error) {
-                console.error("Error fetching articles by topic:", error);
-                setError("Failed to fetch Articles. Please try again later.")
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchArticles();
-    }, [selectedTopic, topic]);
 
     // Scroll to top when this page is mounted or navigated to
     useEffect(() => {
@@ -55,9 +31,7 @@ function TopicPage() {
 
     return (
         <main className="topics-page">
-            {error ? (
-                <ErrorPage message={error} />
-            ): selectedTopic || topic ? (
+            {(selectedTopic || topic) ? (
                 isLoading ? (
                     <div className="topics-loader">
                         <ClipLoader color="#36d7b7" size={70} />
@@ -67,9 +41,14 @@ function TopicPage() {
                         <h2 className="topic-header">
                             {selectedTopic || topic} Articles
                         </h2>
-                        <ArticleList articles={articles} />
+                        <ArticleList
+                            topic={selectedTopic || topic}
+                            sortBy={sortBy}
+                            setSortBy={setSortBy}
+                            order={order}
+                            setOrder={setOrder}
+                        />
                     </>
-                        
                 )
             ) : (
                 <TopicsList onSelectTopic={setSelectedTopic} />

@@ -3,6 +3,7 @@ import { fetchCommentsByArticleId } from '../utils/fetchCommentsByArticleId';
 import CommentCard from './CommentCard';
 import AddComment from './AddComment';
 import ClipLoader from 'react-spinners/ClipLoader';
+import ErrorPage from "./ErrorPage";
 
 function CommentList({ article_id, setCommentCount }){
     const [comments, setComments] = useState([]);
@@ -30,7 +31,11 @@ function CommentList({ article_id, setCommentCount }){
                     <ClipLoader color="#36d7b7" size={50} />
                 </div>
             ) : error ? (
-                <p>Error: {error}</p>
+                <ErrorPage message={
+                    error.includes('Network') ? 'Network error: Please check your connection.' :
+                    error.includes('404') ? 'Comments not found.' :
+                    `Failed to load comments: ${error}`
+                } />
             ) : (
                 <section className="comments">
                     <h2>Discourse</h2>

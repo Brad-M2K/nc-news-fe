@@ -95,6 +95,19 @@ nav a:hover {
   will-change: transform;
 }
 
+/* ==================
+    IMAGES 
+  ===================*/
+
+img {
+  width: 100%;
+  box-shadow: 0 16px 48px 0 rgba(31, 38, 135, 0.32), 0 4px 24px 0 rgba(30,34,60,0.18);
+  border-radius: 30px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: box-shadow 0.2s; }
+
 /* =====================
    HOMEPAGE & ARTICLE LIST
    ===================== */
@@ -130,8 +143,64 @@ nav a:hover {
   opacity: 0.5;
 }
 
+/* ====================
+  SORT CONTROLS
+  =====================
+*/
+
+.sort-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  margin-top: 0rem;
+}
+.sort-dropdown {
+  background: transparent;
+  color: #1a237e;
+  border: none;
+  padding: 0.6rem 2rem 0.6rem 1rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0 0.5rem;
+  /* Remove default arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Custom arrow */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%231a1a1a' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+.sort-dropdown::-ms-expand {
+  display: none;
+}
+
+.sort-dropdown::after {
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.sort-dropdown:focus {
+  outline: none;
+
+}
+
+.sort-dropdown:hover {
+  background: transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.10);
+}
+
 /* =====================
-   TOPICS LIST
+   TOPICS
    ===================== */
 
 .topics-grid {
@@ -195,6 +264,7 @@ nav a:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 1.6s ease-in-out forwards, resetColor 0s 0.7s forwards;
+  
 }
 
 .topic-button:focus {
@@ -218,6 +288,41 @@ nav a:hover {
   }
 }
 
+/* Center the article list container for topics page */
+.topic-header {
+  font-size: 2rem;
+  margin: 1.5rem 0 1rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.topics-page .article-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.topics-page ul {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Center loader in topics page */
+.topics-page .topics-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+  width: 100%;
+}
 
 /* =====================
    ARTICLE CARD (LIST)
@@ -259,6 +364,7 @@ nav a:hover {
 .article-card h2 {
   color: #1a237e;
   font-size: 1.3rem;
+  justify-self: center;
 }
 
 #article-cards-img {
@@ -602,6 +708,67 @@ nav a:hover {
 }
 
 /* =====================
+   BACK TO TOP BUTTON
+   ===================== */
+.back-to-top-btn {
+  position: fixed;
+  right: 2.2rem;
+  bottom: 2.2rem;
+  z-index: 999;
+  background: rgba(255,255,255,0.85);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(30,34,60,0.18);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, background 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  outline: none;
+}
+
+.back-to-top-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #70727133;
+}
+
+.back-to-top-btn.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top-btn:hover {
+  background: #6b6c6c;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.18);
+}
+
+.back-to-top-btn svg {
+  display: block;
+  stroke: #050612;
+  width: 28px;
+  height: 28px;
+  transition: stroke 0.2s;
+}
+
+.back-to-top-btn:hover svg {
+  stroke: #fff;
+}
+
+@media (max-width: 700px) {
+  .back-to-top-btn {
+    right: 1.2rem;
+    bottom: 4.5rem; /* move above nav bar */
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* =====================
    MEDIA QUERIES
    ===================== */
 @media (max-width: 800px) {
@@ -662,38 +829,32 @@ nav a:hover {
   }
 }
 
-/* Center the article list container for topics page */
-.topic-header {
-  font-size: 2rem;
-  margin: 1.5rem 0 1rem;
+/* =====================
+   ERROR STYLES
+   ===================== */
+.error-container {
+  background: rgba(255, 0, 60, 0.08);
+  border: 1.5px solid #e53935;
+  color: #b71c1c;
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  margin: 2rem auto;
+  max-width: 500px;
   text-align: center;
-  text-transform: capitalize;
+  box-shadow: 0 4px 24px rgba(230,57,53,0.08);
 }
 
-.topics-page .article-list-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin: 0 auto;
+.error-container h2 {
+  color: #e53935;
+  font-size: 2rem;
+  margin-bottom: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-.topics-page ul {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.error-container p {
+  font-size: 1.15rem;
+  color: #b71c1c;
+  margin: 0.5rem 0 0 0;
 }
 
-/* Center loader in topics page */
-.topics-page .topics-loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 40vh;
-  width: 100%;
-}
