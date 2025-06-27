@@ -9,6 +9,7 @@ import ErrorPage from './components/ErrorPage';
 import Footer from './components/Footer';
 import { UserProvider } from './contexts/UserContext';
 import TopicPage from './components/TopicPage';
+import FloatingNavOnHeaderHide from './components/FloatingNavOnHeaderHide';
 
 import './App.css'
 
@@ -20,7 +21,9 @@ function App() {
     <UserProvider>
       <BrowserRouter>
         <Header />
-        <NavBar />
+        <FloatingNavOnHeaderHide>
+          <NavBar />
+        </FloatingNavOnHeaderHide>
           <Routes>
             <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<HomePage />} />

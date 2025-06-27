@@ -1,11 +1,12 @@
+import HideOnScrollHeader from './HideOnScrollHeader';
+
 function Header() {
-
-
-
     return (
-        <header>
-            <h1>NC News</h1>
-        </header>
+        <HideOnScrollHeader>
+            <header>
+                <h1>NC News</h1>
+            </header>
+        </HideOnScrollHeader>
     );
 }
 
