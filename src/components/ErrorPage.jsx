@@ -1,7 +1,12 @@
 
 
-function ErrorPage() {
-    return <h2>404 - Page Not Found</h2>;
+function ErrorPage({ message }) {
+    return (
+        <div className="error-container">
+            <h2>Error</h2>
+            <p>{message}</p>
+        </div>
+    )
 }
 
 export default ErrorPage;

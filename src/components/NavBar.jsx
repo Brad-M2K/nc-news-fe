@@ -29,7 +29,12 @@ function NavBar() {
                 }} />
                 Topics
             </Link>
-            <Link to="/MyTopics">
+            <Link to="/MyTopics"
+                onClick={(e) => {
+                    e.preventDefault();
+                    alert("🚧 Feature coming soon!")
+                }}
+            >
                 <MyTopics style={{
                     width: 30, height: 30, verticalAlign: 'middle', pointerEvents: 'none'
                 }} />
