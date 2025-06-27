@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchCommentsByArticleId } from '../utils/fetchCommentsByArticleId';
 import CommentCard from './CommentCard';
-import AddComment from './addComment';
+import AddComment from './AddComment';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 function CommentList({ article_id, setCommentCount }){

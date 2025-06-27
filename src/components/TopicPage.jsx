@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { fetchArticlesByTopic } from '../utils/fetchArticlesByTopic';
 import ArticleCard from './ArticleCard'; 
 import ArticleList from './ArticleList';
 import ClipLoader from 'react-spinners/ClipLoader';
