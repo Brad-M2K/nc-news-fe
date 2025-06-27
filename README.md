@@ -1,5 +1,8 @@
 # nc news front end 
 
+## My Front end on Render *work in progress*
+[NC News](https://nc-news-fe-wmuy.onrender.com)
+
 - there is a tasks list using trello i have also been setting up. but to be honest i strugged using excalidraw and tried out a few differnet things thne ended up back at excalidraw. bit of a frustrating planning day but I already know what i want to do and drawing shapes inst going to get me any closer lol
 
 ## Here is my trello project board

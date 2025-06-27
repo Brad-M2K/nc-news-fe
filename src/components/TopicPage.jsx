@@ -3,7 +3,8 @@ import ArticleCard from './ArticleCard';
 import ArticleList from './ArticleList';
 import ClipLoader from 'react-spinners/ClipLoader';
 import TopicsList from './TopicsList';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { fetchAllArticles } from '../utils/fetchAllArticles';
 
 
 
@@ -12,6 +13,7 @@ function TopicPage() {
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const location = useLocation();
+    const { topic } = useParams();
 
     // Reset selectedTopic if the nav triggers a reset
     useEffect(() => {
@@ -23,14 +25,14 @@ function TopicPage() {
     }, [location.state]);
 
     useEffect(() => {
-        if (!selectedTopic) return;
+        const currentTopic = selectedTopic || topic;
+        if (!currentTopic) return;
 
         const fetchArticles = async () => {
             setIsLoading(true);
             try {
                 // Use your fetchAllArticles or fetchArticlesByTopic here
-                const { fetchAllArticles } = await import('../utils/fetchAllArticles');
-                const topicArticles = await fetchAllArticles({ topic: selectedTopic });
+                const topicArticles = await fetchAllArticles({ topic: currentTopic });
                 setArticles(topicArticles);
             } catch (error) {
                 console.error("Error fetching articles by topic:", error);
@@ -40,7 +42,7 @@ function TopicPage() {
         };
 
         fetchArticles();
-    }, [selectedTopic]);
+    }, [selectedTopic, topic]);
 
     // Scroll to top when this page is mounted or navigated to
     useEffect(() => {
@@ -49,13 +51,19 @@ function TopicPage() {
 
     return (
         <main className="topics-page">
-            {selectedTopic ? (
+            {selectedTopic || topic ? (
                 isLoading ? (
                     <div className="topics-loader">
                         <ClipLoader color="#36d7b7" size={70} />
                     </div>
                 ) : (
-                    <ArticleList articles={articles} />
+                    <>
+                        <h2 className="topic-header">
+                            {selectedTopic || topic} Articles
+                        </h2>
+                        <ArticleList articles={articles} />
+                    </>
+                        
                 )
             ) : (
                 <TopicsList onSelectTopic={setSelectedTopic} />
