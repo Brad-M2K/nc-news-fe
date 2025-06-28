@@ -1,0 +1,31 @@
+.topics-page {
+  padding: 2rem 0 0 0;
+  min-height: 70vh;
+}
+
+.topics-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+}
+
+.topic-header {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  gap: 0.7rem;
+  color: #fff;
+  background: rgba(30,34,60,0.12);
+  border-radius: 0.7rem;
+  padding: 0.5rem 1.2rem;
+  box-shadow: 0 2px 12px #0002;
+}
+
+.topic-header span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

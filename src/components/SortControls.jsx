@@ -1,4 +1,5 @@
-import { useState } from 'react';
+// import { useState } from 'react';
+import './SortControls.css';
 
 function SortControls({ sortBy, setSortBy, order, setOrder }) {
     return (

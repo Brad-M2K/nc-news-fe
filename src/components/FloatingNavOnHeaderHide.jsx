@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import './FloatingNavOnHeaderHide.css';
 
 function FloatingNavOnHeaderHide({ children }) {
   const [headerVisible, setHeaderVisible] = useState(true);
@@ -29,16 +30,7 @@ function FloatingNavOnHeaderHide({ children }) {
 
   return (
     <div
-      style={{
-        position: 'sticky',
-        top: headerVisible ? 50 : 20, // 50px when header is visible, 20px when hidden
-        transition: 'top 0.35s cubic-bezier(.4,0,.2,1)',
-        zIndex: 1099,
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        pointerEvents: 'auto',
-      }}
+      className={`floating-nav-wrapper${headerVisible ? '' : ' header-hidden'}`}
     >
       {children}
     </div>

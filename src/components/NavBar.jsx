@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Home from '../assets/Home.svg?react'
 import Topics from '../assets/Topics.svg?react';
 import MyTopicsHalfStar from '../assets/MyTopics-half-star.svg?react';
+import './NavBar.css';
 
 function NavBar() {
     const location = useLocation();

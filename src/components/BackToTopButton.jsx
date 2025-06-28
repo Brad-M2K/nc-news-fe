@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import ArrowUpIcon from '../assets/Circle Fading Arrow Up.svg';
+import './BackToTopButton.css';
 
 function BackToTopButton() {
     const [visible, setVisible] = useState(false);
@@ -21,7 +23,14 @@ function BackToTopButton() {
             onClick={scrollToTop}
             aria-label="Back to top"
         >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+            <img
+                src={ArrowUpIcon}
+                alt="Back to top arrow"
+                className="back-to-top-arrow-img"
+                width={36}
+                height={36}
+                draggable="false"
+            />
         </button>
     );
 }

@@ -1,0 +1,48 @@
+.sort-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  margin-top: 0rem;
+}
+
+.sort-dropdown {
+  background: transparent;
+  color: #1a237e;
+  border: none;
+  padding: 0.6rem 2rem 0.6rem 1rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0 0.5rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%231a1a1a' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+.sort-dropdown::-ms-expand {
+  display: none;
+}
+
+.sort-dropdown::after {
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.sort-dropdown:focus {
+  outline: none;
+}
+
+.sort-dropdown:hover {
+  background: transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.10);
+}

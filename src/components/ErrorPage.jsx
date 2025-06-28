@@ -1,4 +1,4 @@
-
+import './ErrorPage.css';
 
 function ErrorPage({ message }) {
     return (

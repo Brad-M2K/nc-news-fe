@@ -1,0 +1,81 @@
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  justify-items: center;
+}
+
+.topic-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  min-height: 120px;
+  max-width: 220px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.topic-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 10px 24px rgba(31, 38, 135, 0.28);
+}
+
+.topic-card span {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-top: 0.3rem;
+}
+
+.topic-button{
+  background: transparent;
+  color: black;
+  border: none;
+}
+
+.topic-button:hover {
+  background: linear-gradient(90deg, #210287, #0984e3, #4c00ce);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 1.6s ease-in-out forwards, resetColor 0s 0.7s forwards;
+}
+
+.topic-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+@keyframes resetColor {
+  100% {
+    -webkit-text-fill-color: black;
+    background: none;
+  }
+}

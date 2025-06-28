@@ -5,6 +5,7 @@ import AddComment from './AddComment';
 import ClipLoader from 'react-spinners/ClipLoader';
 import ErrorPage from "./ErrorPage";
 import useMobileInView from './useMobileInView';
+import './CommentList.css';
 
 function CommentList({ article_id, setCommentCount }){
     const [comments, setComments] = useState([]);

@@ -1,0 +1,32 @@
+header {
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  min-height: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: rgba(25, 25, 40, 0.55);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 4px 24px rgba(20,20,30,0.22);
+  z-index: 1001;
+  padding-left: 2rem;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  color: #efeff1;
+  margin: 0;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-align: left;
+}
+
+@media (max-width: 700px) {
+  header {
+    height: 38px;
+    font-size: 1rem;
+  }
+}

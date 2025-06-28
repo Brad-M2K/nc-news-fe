@@ -4,6 +4,8 @@ import ArticleList from './ArticleList';
 import ClipLoader from 'react-spinners/ClipLoader';
 import TopicsList from './TopicsList';
 import { useLocation, useParams } from 'react-router-dom';
+import Topics from '../assets/Topics.svg?react'
+import './TopicPage.css';
 
 
 
@@ -38,8 +40,11 @@ function TopicPage() {
                     </div>
                 ) : (
                     <>
-                        <h2 className="topic-header">
-                            {selectedTopic || topic} Articles
+                            <h2 className="topic-header">
+                                <span>
+                                    <Topics style={{ width: 30, height: 30, verticalAlign: 'middle', pointerEvents:'none'}} /> {selectedTopic || topic}
+                                </span>
+                            
                         </h2>
                         <ArticleList
                             topic={selectedTopic || topic}

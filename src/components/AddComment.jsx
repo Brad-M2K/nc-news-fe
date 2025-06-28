@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { postComment } from '../utils/postComment';
 import ClipLoader from 'react-spinners/ClipLoader'
+import './AddComment.css';
+import CommentTextField from './CommentTextField';
 
 
 function AddComment({ article_id, setComments, setCommentCount }) {
     const [comment, setComment] = useState('');
     const [isPosting, setIsPosting] = useState(false);
     const [error, setError] = useState(null);
-    
+    const [isFocused, setIsFocused] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,17 +38,19 @@ function AddComment({ article_id, setComments, setCommentCount }) {
             {isPosting ? (
                 <ClipLoader color="#36d7b7" size={50} /> 
             ) : (
-                <>
-                    <input
-                        type="text"
-                        placeholder="Join the discussion"
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                    />
-                    <button type="submit" disabled={!comment.trim()}>Comment</button>
-                </>
+                <CommentTextField
+                    value={comment}
+                    onChange={e => setComment(e.target.value)}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    isFocused={isFocused}
+                    showConfirm={showConfirm}
+                    setShowConfirm={setShowConfirm}
+                    setComment={setComment}
+                    setIsFocused={setIsFocused}
+                    error={error}
+                />
             )}
-            {error && <p className='error'>{error}</p>}
         </form>
     )
 }

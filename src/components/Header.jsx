@@ -1,3 +1,4 @@
+import './Header.css';
 import HideOnScrollHeader from './HideOnScrollHeader';
 
 function Header() {

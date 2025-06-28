@@ -3,6 +3,7 @@ import DeleteCommentButton from './DeleteCommentButton';
 import { UserContext } from '../contexts/UserContext';
 import TrashIcon from '../assets/TrashIcon.svg?react';
 import CancelIcon from '../assets/Cancel.svg?react';
+import './CommentCard.css';
 
 function CommentCard({ comment, setCommentCount, isActive, cardRef }) {
     const [isDeleted, setIsDeleted] = useState(false);

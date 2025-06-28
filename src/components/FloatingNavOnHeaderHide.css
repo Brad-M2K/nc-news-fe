@@ -1,0 +1,14 @@
+.floating-nav-wrapper {
+  position: sticky;
+  top: 50px;
+  transition: top 0.35s cubic-bezier(.4,0,.2,1);
+  z-index: 1099;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.floating-nav-wrapper.header-hidden {
+  top: 20px;
+}

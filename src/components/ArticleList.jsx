@@ -4,6 +4,7 @@ import {fetchAllArticles} from '../utils/fetchArticles';
 import ClipLoader from 'react-spinners/ClipLoader';
 import SortControls from './SortControls';
 import ErrorPage from "./ErrorPage";
+import './ArticleList.css';
 
 
 

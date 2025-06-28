@@ -1,0 +1,25 @@
+.footer {
+  width: 100vw;
+  background: rgba(25, 25, 40, 0.55);
+  color: #fff;
+  text-align: center;
+  padding: 1.2rem 0 1.2rem 0;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  position: static;
+  left: unset;
+  bottom: unset;
+  z-index: 1;
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 -2px 12px rgba(20,20,30,0.13);
+  margin-top: 2rem;
+}
+
+@media (max-width: 700px) {
+  .footer {
+    font-size: 0.95rem;
+    padding: 0.7rem 0;
+  }
+}

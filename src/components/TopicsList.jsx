@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchTopics } from '../utils/fetchTopics'; 
 import ClipLoader from 'react-spinners/ClipLoader';
 import ErrorPage from './ErrorPage';
+import './TopicsList.css';
 
 function TopicsList({ onSelectTopic }) {
     const [topics, setTopics] = useState([]);

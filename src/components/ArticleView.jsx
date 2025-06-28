@@ -5,18 +5,15 @@ import CommentList from './CommentList'; // adjust path if needed
 import VoteButtons from './VoteButtons';
 import ClipLoader from 'react-spinners/ClipLoader';
 import ErrorPage from "./ErrorPage";
-import MessageCircleIcon from '../assets/Message-Circle-Icon.svg?react';
-import TopicsIcon from '../assets/Topics.svg?react';
-import UserIcon from '../assets/User-Icon.svg?react';
+import ArticleMeta from './ArticleMeta';
+import './ArticleView.css';
 
-
-function ArticleView() {
+function ArticleView({ setCommentCount }) {
     const { article_id } = useParams();
     const [article, setArticle] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [voteCount, setVoteCount] = useState(0);
-    const [commentCount, setCommentCount] = useState(0);
 
     // Scroll to top on mount/article change
     useEffect(() => {
@@ -29,7 +26,6 @@ function ArticleView() {
                 const res = await fetchArticleById(article_id);
                 setArticle(res || {});
                 setVoteCount(res.votes);
-                setCommentCount(res.comment_count);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -56,36 +52,31 @@ function ArticleView() {
             <p>No article found.</p>
           ) : (
                 <div className="article-view-container">
-                  
-                  <div className="article-meta">
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                      <UserIcon style={{ width: 20, height: 20, verticalAlign: 'middle', pointerEvents: 'none' }} />
-                      {article.author}
-                    </span>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                      <TopicsIcon style={{ width: 20, height: 20, verticalAlign: 'middle', pointerEvents: 'none' }} />
-                      {article.topic}
-                    </span>
-                  </div>
+                  <ArticleMeta
+                    author={article.author}
+                    topic={article.topic}
+                    showAuthor={true}
+                    showTopic={true}
+                    topicLink={true}
+                  />
               <img id="article-view-img" src={article.article_img_url} />
               <h2>{article.title}</h2>
               <article>
                 <p>{article.body}</p>
               </article>
-              <div className="article-meta">
-                  <VoteButtons
-                    type="article"
-                    id={article_id}
-                    votes={article.votes}
-                    voteCount={voteCount}
-                    setVoteCount={setVoteCount}
-                  />
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                  <MessageCircleIcon style={{ width: 20, height: 20, verticalAlign: 'middle', pointerEvents: 'none' }} />
-                  {article.comment_count}
-                </span>
-                <span>{new Date(article.created_at).toLocaleDateString()}</span>
-              </div>
+              <ArticleMeta
+                articleId={article.article_id}
+                votes={article.votes}
+                voteCount={voteCount}
+                setVoteCount={setVoteCount}
+                commentCount={article.comment_count}
+                createdAt={article.created_at}
+                showVotes={true}
+                showComments={true}
+                showDate={true}
+                showAuthor={false}
+                showTopic={false}
+              />
               <hr className="article-comments-separator" />
               <CommentList article_id={article_id} setCommentCount={setCommentCount} />
             </div>
