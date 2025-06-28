@@ -4,11 +4,13 @@ import CommentCard from './CommentCard';
 import AddComment from './AddComment';
 import ClipLoader from 'react-spinners/ClipLoader';
 import ErrorPage from "./ErrorPage";
+import useMobileInView from './useMobileInView';
 
 function CommentList({ article_id, setCommentCount }){
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
+    const [activeComment, cardRefs] = useMobileInView(comments, c => c.comment_id);
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -42,8 +44,14 @@ function CommentList({ article_id, setCommentCount }){
                     <AddComment article_id={article_id} setComments={setComments} setCommentCount={setCommentCount} />
                     {comments.length === 0 && <p>No comments yet. Be the first to speak!</p>}
                     <ul>
-                        {comments.map((comment) => (
-                            <CommentCard key={comment.comment_id} comment={comment} setCommentCount={setCommentCount} />
+                        {comments.map((comment, idx) => (
+                            <CommentCard
+                                key={comment.comment_id}
+                                comment={comment}
+                                setCommentCount={setCommentCount}
+                                isActive={activeComment === comment.comment_id}
+                                cardRef={el => cardRefs.current[idx] = el}
+                            />
                         ))}
                     </ul>
                 </section>

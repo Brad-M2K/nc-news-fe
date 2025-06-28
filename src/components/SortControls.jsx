@@ -1,10 +1,6 @@
+import { useState } from 'react';
 
-
-
-function SortControls({ sortBy, setSortBy, order, setOrder}) {
-
-
-
+function SortControls({ sortBy, setSortBy, order, setOrder }) {
     return (
         <div className="sort-controls">
             <select
@@ -14,6 +10,7 @@ function SortControls({ sortBy, setSortBy, order, setOrder}) {
                 onChange={(e) => setSortBy(e.target.value)}
             >
                 <option value="">SORT BY</option>
+                <option value="created_at">Date</option>
                 <option value="title">Title</option>
                 <option value="author">Author</option>
                 <option value="votes">Votes</option>
@@ -30,8 +27,7 @@ function SortControls({ sortBy, setSortBy, order, setOrder}) {
                 <option value="desc">Descending</option>
             </select>
         </div>
-    )
-
+    );
 }
 
 export default SortControls;

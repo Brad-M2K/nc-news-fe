@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Home from '../assets/Home.svg?react'
 import Topics from '../assets/Topics.svg?react';
-import MyTopics from '../assets/MyTopics.svg?react';
+import MyTopicsHalfStar from '../assets/MyTopics-half-star.svg?react';
 
 function NavBar() {
     const location = useLocation();
@@ -35,7 +35,7 @@ function NavBar() {
                     alert("🚧 Feature coming soon!")
                 }}
             >
-                <MyTopics style={{
+                <MyTopicsHalfStar style={{
                     width: 30, height: 30, verticalAlign: 'middle', pointerEvents: 'none'
                 }} />
                 My Topics

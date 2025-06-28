@@ -5,6 +5,9 @@ import CommentList from './CommentList'; // adjust path if needed
 import VoteButtons from './VoteButtons';
 import ClipLoader from 'react-spinners/ClipLoader';
 import ErrorPage from "./ErrorPage";
+import MessageCircleIcon from '../assets/Message-Circle-Icon.svg?react';
+import TopicsIcon from '../assets/Topics.svg?react';
+import UserIcon from '../assets/User-Icon.svg?react';
 
 
 function ArticleView() {
@@ -52,25 +55,36 @@ function ArticleView() {
           ) : !article.title ? (
             <p>No article found.</p>
           ) : (
-            <div className="article-view-container">
-              <div className="article-meta">
-                <span>By {article.author}</span> | <span>Topic: {article.topic}</span> |
-              </div>
+                <div className="article-view-container">
+                  
+                  <div className="article-meta">
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                      <UserIcon style={{ width: 20, height: 20, verticalAlign: 'middle', pointerEvents: 'none' }} />
+                      {article.author}
+                    </span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                      <TopicsIcon style={{ width: 20, height: 20, verticalAlign: 'middle', pointerEvents: 'none' }} />
+                      {article.topic}
+                    </span>
+                  </div>
               <img id="article-view-img" src={article.article_img_url} />
               <h2>{article.title}</h2>
               <article>
                 <p>{article.body}</p>
               </article>
               <div className="article-meta">
-                <VoteButtons
-                  type="article"
-                  id={article_id}
-                  votes={article.votes}
-                  voteCount={voteCount}
-                  setVoteCount={setVoteCount}
-                /> |
-                <span>💬 {commentCount}</span> |
-                <span>Posted: {new Date(article.created_at).toLocaleString()}</span>
+                  <VoteButtons
+                    type="article"
+                    id={article_id}
+                    votes={article.votes}
+                    voteCount={voteCount}
+                    setVoteCount={setVoteCount}
+                  />
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                  <MessageCircleIcon style={{ width: 20, height: 20, verticalAlign: 'middle', pointerEvents: 'none' }} />
+                  {article.comment_count}
+                </span>
+                <span>{new Date(article.created_at).toLocaleDateString()}</span>
               </div>
               <hr className="article-comments-separator" />
               <CommentList article_id={article_id} setCommentCount={setCommentCount} />

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { patchVotes } from '../utils/patchVotes'
+import HollowUpArrow from '../assets/Hollow-Cut-Up-Arrow.svg?react';
+import HollowDownArrow from '../assets/Hollow-Cut-Down-Arrow.svg?react';
 
 
 
@@ -32,9 +34,13 @@ function VoteButtons({ type, id, voteCount, setVoteCount }) {
 
     return (
         <div className="vote-buttons-inline">
-            <button onClick={() => handleVote(1)} aria-pressed={userVote === 1}>⬆︎</button>
+            <button onClick={() => handleVote(1)} aria-pressed={userVote === 1}>
+                <HollowUpArrow style={{ width: 22, height: 22, verticalAlign: 'middle' }} />
+            </button>
             <span>{voteCount}</span>
-            <button onClick={() => handleVote(-1)} aria-pressed={userVote === -1}>⬇︎</button>
+            <button onClick={() => handleVote(-1)} aria-pressed={userVote === -1}>
+                <HollowDownArrow style={{ width: 22, height: 22, verticalAlign: 'middle' }} />
+            </button>
             {error && <p>{error}</p>}
         </div>
     );

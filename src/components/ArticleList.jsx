@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import ArticleCard from "./ArticleCard";
-import {fetchAllArticles} from '../utils/fetchAllArticles';
+import {fetchAllArticles} from '../utils/fetchArticles';
 import ClipLoader from 'react-spinners/ClipLoader';
 import SortControls from './SortControls';
 import ErrorPage from "./ErrorPage";
