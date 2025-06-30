@@ -13,19 +13,25 @@
 .topic-header {
   display: flex;
   align-items: center;
+  justify-content: center; /* Center horizontally */
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
   gap: 0.7rem;
-  color: #fff;
-  background: rgba(30,34,60,0.12);
+  color: #565656;
+  background: rgb(246, 246, 247);
   border-radius: 0.7rem;
   padding: 0.5rem 1.2rem;
   box-shadow: 0 2px 12px #0002;
+  text-align: center; /* Ensure text is centered */
+  max-width: 420px; /* Limit width */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .topic-header span {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  justify-content: center; /* Center icon and text */
 }

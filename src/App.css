@@ -125,7 +125,7 @@ img, #article-cards-img, #article-view-img {
   background: none;
 }
 
-.homepage > ul,
+.homepage ul,
 .topics-page ul {
   width: 100%;
   max-width: 700px;
