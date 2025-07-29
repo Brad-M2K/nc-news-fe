@@ -16,6 +16,7 @@ function ArticleList({ topic, articles: propArticles }) {
     const cardRefs = useRef([]);
     const [order, setOrder] = useState(null);
     const [sortBy, setSortBy] = useState(null);
+    const hasRestoredScroll = useRef(false);
 
     useEffect(() => {
         if (propArticles) {
@@ -36,6 +37,24 @@ function ArticleList({ topic, articles: propArticles }) {
 
         getArticles();
     }, [topic, propArticles, sortBy, order]);
+
+    // Restore scroll position when returning from article view
+    useEffect(() => {
+        if (!isLoading && articles.length && !hasRestoredScroll.current) {
+            const savedScrollPosition = sessionStorage.getItem('articleListScrollPosition');
+            const savedTopic = sessionStorage.getItem('articleListTopic');
+            
+            if (savedScrollPosition && (topic || 'all') === savedTopic) {
+                setTimeout(() => {
+                    window.scrollTo(0, parseInt(savedScrollPosition));
+                    hasRestoredScroll.current = true;
+                    // Clear the saved position after using it
+                    sessionStorage.removeItem('articleListScrollPosition');
+                    sessionStorage.removeItem('articleListTopic');
+                }, 100);
+            }
+        }
+    }, [isLoading, articles, topic]);
 
     useEffect(() => {
         if (!articles.length) return;
@@ -93,6 +112,7 @@ function ArticleList({ topic, articles: propArticles }) {
                         article={article}
                         isActive={activeCard === article.article_id}
                         cardRef={el => cardRefs.current[idx] = el}
+                        topic={topic}
                     />
                 ))}
             </ul>

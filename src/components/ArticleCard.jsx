@@ -7,8 +7,14 @@ import TopicsIcon from '../assets/Topics.svg?react';
 import UserIcon from '../assets/User-Icon.svg?react';
 import './ArticleCard.css';
 
-function ArticleCard({ article, isActive, cardRef }) {
+function ArticleCard({ article, isActive, cardRef, topic }) {
     const [voteCount, setVoteCount] = useState(article.votes);
+
+    const handleArticleClick = () => {
+        // Save current scroll position and topic before navigating
+        sessionStorage.setItem('articleListScrollPosition', window.scrollY.toString());
+        sessionStorage.setItem('articleListTopic', topic || 'all');
+    };
 
     return (
         <li ref={cardRef} className={`article-card${isActive ? ' in-view' : ''}`}>
@@ -19,7 +25,7 @@ function ArticleCard({ article, isActive, cardRef }) {
                 showTopic={true}
                 topicLink={true}
             />
-            <Link to={`/articles/${article.article_id}`}>
+            <Link to={`/articles/${article.article_id}`} onClick={handleArticleClick}>
                 <img id="article-cards-img" src={article.article_img_url}/>
                 <h2>{article.title}</h2>
             </Link>
